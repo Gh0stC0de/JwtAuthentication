@@ -1,0 +1,396 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JwtAuthentication.Service</name>
+    </assembly>
+    <members>
+        <member name="T:JwtAuthentication.Service.Controllers.UserController">
+            <summary>
+                Controls interaction with user.
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Controllers.UserController.#ctor(JwtAuthentication.Service.Services.Abstractions.IAuthenticationService)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Controllers.UserController" /> class with a user service.
+            </summary>
+            <param name="authenticationService">Authentication service</param>
+        </member>
+        <member name="M:JwtAuthentication.Service.Controllers.UserController.Authenticate(JwtAuthentication.Service.Models.AuthenticateModel)">
+            <summary>
+                Authenticates a user.
+            </summary>
+            <param name="model">Authentication model</param>
+            <returns>Action result</returns>
+        </member>
+        <member name="M:JwtAuthentication.Service.Controllers.UserController.Register(JwtAuthentication.Service.Models.RegisterModel)">
+            <summary>
+                Registers a user.
+            </summary>
+            <param name="model">Register model</param>
+            <returns>Action result</returns>
+        </member>
+        <member name="T:JwtAuthentication.Service.Exceptions.InvalidCredentialsException">
+            <summary>
+                Represents an exception that is thrown when the credentials are invalid.
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Exceptions.InvalidCredentialsException.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Exceptions.InvalidCredentialsException" /> class.
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Exceptions.InvalidCredentialsException.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Exceptions.InvalidCredentialsException" /> class with a message.
+            </summary>
+            <param name="message">The message</param>
+        </member>
+        <member name="M:JwtAuthentication.Service.Exceptions.InvalidCredentialsException.#ctor(System.String,System.Exception)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Exceptions.InvalidCredentialsException" /> class with a message and an inner
+                exception.
+            </summary>
+            <param name="message">The message</param>
+            <param name="inner">The inner exception</param>
+        </member>
+        <member name="M:JwtAuthentication.Service.Exceptions.InvalidCredentialsException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Exceptions.InvalidCredentialsException" /> class with a serialization info and s
+                streaming context.
+            </summary>
+            <param name="info">The serialization info</param>
+            <param name="context">The streaming context</param>
+        </member>
+        <member name="T:JwtAuthentication.Service.Helpers.AppSettings">
+            <summary>
+                Represents application settings
+            </summary>
+        </member>
+        <member name="P:JwtAuthentication.Service.Helpers.AppSettings.TokenSecret">
+            <summary>
+                Secret to sign json web tokens
+            </summary>
+        </member>
+        <member name="P:JwtAuthentication.Service.Helpers.AppSettings.TokenExpirationInDays">
+            <summary>
+                Token expiration in days
+            </summary>
+        </member>
+        <member name="T:JwtAuthentication.Service.Models.AuthenticateModel">
+            <summary>
+                Represents a model for authentication.
+            </summary>
+        </member>
+        <member name="P:JwtAuthentication.Service.Models.AuthenticateModel.Username">
+            <summary>
+                Username
+            </summary>
+        </member>
+        <member name="P:JwtAuthentication.Service.Models.AuthenticateModel.Password">
+            <summary>
+                Password
+            </summary>
+        </member>
+        <member name="T:JwtAuthentication.Service.Models.AuthenticationResponse">
+            <summary>
+                Represents an authentication response.
+            </summary>
+        </member>
+        <member name="P:JwtAuthentication.Service.Models.AuthenticationResponse.UserId">
+            <summary>
+                Identity
+            </summary>
+        </member>
+        <member name="P:JwtAuthentication.Service.Models.AuthenticationResponse.Username">
+            <summary>
+                Username
+            </summary>
+        </member>
+        <member name="P:JwtAuthentication.Service.Models.AuthenticationResponse.Token">
+            <summary>
+                API token
+            </summary>
+        </member>
+        <member name="T:JwtAuthentication.Service.Models.BadRequestResponse">
+            <summary>
+                Represents a bad request response.
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Models.BadRequestResponse.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Models.BadRequestResponse" /> class.
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Models.BadRequestResponse.#ctor(System.String,System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Models.BadRequestResponse" /> class with a title and a detail.
+            </summary>
+            <param name="title">The title</param>
+            <param name="detail">The detail</param>
+        </member>
+        <member name="P:JwtAuthentication.Service.Models.BadRequestResponse.Title">
+            <summary>
+                Title
+            </summary>
+        </member>
+        <member name="P:JwtAuthentication.Service.Models.BadRequestResponse.Detail">
+            <summary>
+                Detail
+            </summary>
+        </member>
+        <member name="T:JwtAuthentication.Service.Models.RegisterModel">
+            <summary>
+                Represents a model for registration.
+            </summary>
+        </member>
+        <member name="P:JwtAuthentication.Service.Models.RegisterModel.Username">
+            <summary>
+                Username
+            </summary>
+        </member>
+        <member name="P:JwtAuthentication.Service.Models.RegisterModel.Password">
+            <summary>
+                Password
+            </summary>
+        </member>
+        <member name="T:JwtAuthentication.Service.Models.RegisterResponse">
+            <summary>
+                Represents a register response.
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Models.RegisterResponse.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Models.RegisterResponse"/> class.
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Models.RegisterResponse.#ctor(System.Guid,System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Models.RegisterResponse"/> class with a user identity and a username.
+            </summary>
+            <param name="userId">The user identity</param>
+            <param name="username">The username</param>
+        </member>
+        <member name="P:JwtAuthentication.Service.Models.RegisterResponse.UserId">
+            <summary>
+                User identity
+            </summary>
+        </member>
+        <member name="P:JwtAuthentication.Service.Models.RegisterResponse.Username">
+            <summary>
+                Username
+            </summary>
+        </member>
+        <member name="T:JwtAuthentication.Service.Program">
+            <summary>
+                Represents the program.
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Program.Main(System.String[])">
+            <summary>
+                Main function of the program.
+            </summary>
+            <param name="args">Arguments</param>
+        </member>
+        <member name="M:JwtAuthentication.Service.Program.CreateHostBuilder(System.String[])">
+            <summary>
+                Creates a host builder.
+            </summary>
+            <param name="args">Arguments</param>
+            <returns>Host builder</returns>
+        </member>
+        <member name="T:JwtAuthentication.Service.Services.Abstractions.IAuthenticationService">
+            <summary>
+                Service for user authentication.
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Abstractions.IAuthenticationService.Authenticate(System.String,System.String)">
+            <summary>
+                Authenticates a user.
+            </summary>
+            <param name="username">Username</param>
+            <param name="password">Password</param>
+            <returns>Authentication response</returns>
+            <exception cref="T:System.InvalidOperationException">The credentials (username and/or password) are invalid.</exception>
+            <exception cref="T:JwtAuthentication.Service.Exceptions.InvalidCredentialsException">There is more than one user with this username.</exception>
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Abstractions.IAuthenticationService.Register(JwtAuthentication.Core.Models.User,System.String)">
+            <summary>
+                Registers a user.
+            </summary>
+            <param name="user">The user to register</param>
+            <param name="password">The password</param>
+            <returns>The created user</returns>
+            <exception cref="T:System.ArgumentException">An argument is invalid.</exception>
+            <exception cref="T:System.ArgumentNullException">An argument is null.</exception>
+            <exception cref="T:System.InvalidOperationException">The username is already taken.</exception>
+        </member>
+        <member name="T:JwtAuthentication.Service.Services.Abstractions.IJwtService">
+            <summary>
+                Service for JSON web token.
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Abstractions.IJwtService.GetNewToken(System.String)">
+            <summary>
+                Gets a new JSON web token.
+            </summary>
+            <param name="userId">User identity</param>
+            <returns>JSON web token as string</returns>
+        </member>
+        <member name="T:JwtAuthentication.Service.Services.Abstractions.IUserService">
+            <summary>
+                Represents a service to interact with a user.
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Abstractions.IUserService.GetUser(System.String)">
+            <summary>
+                Gets a user by the username.
+            </summary>
+            <remarks>Only enabled users will be checked.</remarks>
+            <param name="username">The username.</param>
+            <returns>The user</returns>
+            <exception cref="T:System.ArgumentNullException">The argument <paramref name="username" />is null.</exception>
+            <exception cref="T:System.InvalidOperationException">There is more then one user with the given username.</exception>
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Abstractions.IUserService.GetUser(System.Guid)">
+            <summary>
+                Gets a user by the identity.
+            </summary>
+            <remarks>Only enabled users will be checked.</remarks>
+            <param name="userId">The user identity.</param>
+            <returns>The user</returns>
+            <exception cref="T:System.InvalidOperationException">There is more then one user with the given username.</exception>
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Abstractions.IUserService.Add(JwtAuthentication.Core.Models.User)">
+            <summary>
+                Adds a user.
+            </summary>
+            <param name="user">The user to add</param>
+            <exception cref="T:Microsoft.EntityFrameworkCore.DbUpdateException">
+                An error is encountered while saving to the database.
+            </exception>
+            <exception cref="T:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException">
+                A concurrency violation is encountered while saving to the database.
+            </exception>
+            >
+        </member>
+        <member name="T:JwtAuthentication.Service.Services.Implementations.AuthenticationService">
+            <inheritdoc />
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Implementations.AuthenticationService.#ctor(JwtAuthentication.Service.Services.Abstractions.IUserService,JwtAuthentication.Service.Services.Abstractions.IJwtService)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Services.Implementations.AuthenticationService" /> class with a user service and a JSON web
+                token service.
+            </summary>
+            <param name="userService">User service</param>
+            <param name="jwtService">JSON web token service</param>
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Implementations.AuthenticationService.Authenticate(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Implementations.AuthenticationService.Register(JwtAuthentication.Core.Models.User,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Implementations.AuthenticationService.CreateHashAndSalt(System.String)">
+            <summary>
+                Creates a has and salt of a password.
+            </summary>
+            <param name="password">The password</param>
+            <returns>Hash and salt</returns>
+            <exception cref="T:System.ArgumentException">An argument is invalid.</exception>
+            <exception cref="T:System.ArgumentNullException">An argument is null.</exception>
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Implementations.AuthenticationService.VerifyPasswordHash(System.String,System.Byte[],System.Byte[])">
+            <summary>
+                Verifies a password hash.
+            </summary>
+            <param name="password">The password</param>
+            <param name="passwordHash">The password hash</param>
+            <param name="passwordSalt">The password salt</param>
+            <returns><c>True</c> if the hash oft the <paramref name="password"></paramref> equals the <paramref name="passwordHash"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">An argument is null.</exception>
+            <exception cref="T:System.ArgumentException">An argument is invalid.</exception>
+        </member>
+        <member name="T:JwtAuthentication.Service.Services.Implementations.JwtService">
+            <inheritdoc />
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Implementations.JwtService.#ctor(Microsoft.Extensions.Options.IOptions{JwtAuthentication.Service.Helpers.AppSettings})">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Services.Implementations.JwtService" /> class with application settings.
+            </summary>
+            <param name="appSettings">Application settings</param>
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Implementations.JwtService.GetNewToken(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:JwtAuthentication.Service.Services.Implementations.UserService">
+            <inheritdoc cref="T:JwtAuthentication.Service.Services.Abstractions.IUserService" />
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Implementations.UserService.#ctor(JwtAuthentication.Infrastructure.DbContexts.Abstractions.IApplicationDbContext)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Services.Implementations.UserService"/> class with a context.
+            </summary>
+            <param name="context">Application database context</param>
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Implementations.UserService.GetUser(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Implementations.UserService.GetUser(System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Implementations.UserService.Add(JwtAuthentication.Core.Models.User)">
+            <inheritdoc />
+        </member>
+        <member name="M:JwtAuthentication.Service.Services.Implementations.UserService.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:JwtAuthentication.Service.Startup">
+            <summary>
+                Manages application startup.
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+                Initializes a new instance of the <see cref="T:JwtAuthentication.Service.Startup" /> class with a configuration.
+            </summary>
+            <param name="configuration">Configuration</param>
+        </member>
+        <member name="P:JwtAuthentication.Service.Startup.Configuration">
+            <summary>
+                Configuration
+            </summary>
+        </member>
+        <member name="M:JwtAuthentication.Service.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                Configures services.
+            </summary>
+            <param name="services">Service collection</param>
+        </member>
+        <member name="M:JwtAuthentication.Service.Startup.ConfigureAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Byte[])">
+            <summary>
+                Configures the authentication.
+            </summary>
+            <param name="services">Services</param>
+            <param name="secret">Issuer signing key secret</param>
+        </member>
+        <member name="M:JwtAuthentication.Service.Startup.ConfigureSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                Configures swagger.
+            </summary>
+            <param name="services">Services</param>
+        </member>
+        <member name="M:JwtAuthentication.Service.Startup.ConfigureApplicationDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+                Configures application db context.
+            </summary>
+            <param name="services">Services</param>
+            <param name="appSettingsSection">Application settings configuration section</param>
+        </member>
+        <member name="M:JwtAuthentication.Service.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+                Configures the HTTP request pipeline.
+            </summary>
+            <param name="app">Application builder</param>
+            <param name="env">Web host environment</param>
+        </member>
+    </members>
+</doc>
